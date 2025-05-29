@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useCallback, useRef, useState } from "react";
 
 export const weatherContext = createContext();
 
@@ -9,10 +9,15 @@ const DataContextProvider = ({ children }) => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const DataAPi = () => {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.focus();
+  };
+
+  const DataAPi = useCallback(() => {
     setLoading(true);
     axios
-
       .get(
         `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=121d290669da4d343f2c0d10783475b9`
       )
@@ -22,7 +27,6 @@ const DataContextProvider = ({ children }) => {
           prev.includes(res.data.name) ? prev : [...prev, res.data.name]
         );
       })
-
       .catch((err) => {
         alert("City not found or API error");
         console.error(err);
@@ -32,15 +36,7 @@ const DataContextProvider = ({ children }) => {
       });
 
     setSearch("");
-  };
-  //   console.log(data);
-  //   console.log(history);
-
-  const inputRef = useRef(null);
-
-  const handleClick = () => {
-    inputRef.current.focus();
-  };
+  }, [search]);
 
   return (
     <weatherContext.Provider
