@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../components/Input";
 import WeatherCard from "../components/WeatherCard";
-import DataContextProvider from "../context/dataContext";
+import DataContextProvider from "../context/DataContext";
 
 const Home = () => {
   return (
