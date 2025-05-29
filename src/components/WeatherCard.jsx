@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import DetailCard from "./DetailCard";
-import { weatherContext } from "../context/dataContext";
+import { weatherContext } from "../context/DataContext";
 import {
   FaSun,
   FaMapMarkerAlt,

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaSearch } from "react-icons/fa";
-import { weatherContext } from "../context/dataContext";
+import { weatherContext } from "../context/DataContext";
 
 const Input = () => {
   const { DataAPi, setSearch, search, inputRef } = useContext(weatherContext);
